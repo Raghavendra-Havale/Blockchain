@@ -40,8 +40,9 @@ contract DecentralisedCollege{
     }
 
     function addNewStudent(string memory _studentName,uint _UIN,uint _phoneNo,string memory _course) public OnlyCollege {
-        require(College[Student[_UIN].studentCollegeAddress].addStudentFunction=true,"You are blocked from adding students");
+        require(College[msg.sender].addStudentFunction=true,"You are blocked from adding students");
         Student[_UIN]=Studentdetails(_studentName,_UIN,msg.sender,_phoneNo,_course);
+        College[msg.sender].numOfStudents++;
     }
 
     function blockCollege(address _collegeAddress) public OnlyUniversity{
